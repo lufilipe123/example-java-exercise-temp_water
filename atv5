@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class atv5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        final int TOTAL_TEMPERATURAS = 12;
+        double[] temperaturas = new double[TOTAL_TEMPERATURAS];
+        double somaTemperaturas = 0;
+        
+        System.out.println("SISTEMA DE MEDIÇÃO DE TEMPERATURA");
+        System.out.println("Por favor, insira 12 temperaturas entre 4°C e 10°C");
+        
+        for (int i = 0; i < TOTAL_TEMPERATURAS; i++) {
+            double temperatura;
+            
+            do {
+                System.out.printf("Digite a %dª temperatura (°C): ", i + 1);
+                temperatura = scanner.nextDouble();
+                
+                if (temperatura < 4 || temperatura > 10) {
+                    System.out.println("A temperatura deve estar entre 4°C e 10°C");
+                    System.out.println("Por favor, digite novamente.");
+                }
+            } while (temperatura < 4 || temperatura > 10);
+            
+            temperaturas[i] = temperatura;
+            somaTemperaturas += temperatura;
+            System.out.printf("Temperatura %.1f°C registrada com sucesso!\n", temperatura);
+            System.out.println("---");
+        }
+        
+        double media = somaTemperaturas / TOTAL_TEMPERATURAS;
+        
+        // Exibe os resultados detalhados
+        System.out.println("RELATÓRIO FINAL");
+        
+        System.out.println("Temperaturas registradas:");
+        for (int i = 0; i < TOTAL_TEMPERATURAS; i++) {
+            System.out.printf("Temperatura %2d: %.1f°C\n", i + 1, temperaturas[i]);
+        }
+        
+        System.out.printf("Total de temperaturas: %d\n", TOTAL_TEMPERATURAS);
+        System.out.printf("Soma das temperaturas: %.2f°C\n", somaTemperaturas);
+        System.out.printf("Média das temperaturas: %.2f°C\n", media);
+        
+        scanner.close();
+    }
+}
